@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Генератор шурлов{% endblock %}
+{% block description %}Генератор шурлов{% endblock %}
+{% block keywords %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+	<h3>Введите URL</h3>
+	<div class="">
+	
+	<p>Поля отмеченные <sup class="required">*</sup> обязательные для заполнения</p>
+
+	<form class="needs-validation" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
+		{% csrf_token %} 
+		{% for hidden in form.hidden_fields %} 
+			{{ hidden }} 
+		{% endfor %}
+
+		<fieldset>
+			{% for i in form.visible_fields %}
+
+			<div class="">
+				{% if i.field.required %}
+					<sup class="required">*</sup>
+				{% endif %}
+				<label>{{ i.label }}</label>
+					{{ i }}
+				{% if i.errors %}
+					<p class="text-danger">{{ i.errors|striptags }}</p>
+				{% endif %}
+				<p class="help-block">{{ i.field.help_text }}</p>
+			</div>
+
+			{% endfor %}
+
+			<button type="submit">Создать</button>
+
+		</fieldset>
+
+	</form>
+	</div>
+	{{shurl.settings.SITE_URL}}
+	{% if shurl %}
+	<br>
+	<div>
+	<h3>Полученная ссылка</h3>
+		<p><input value="127.0.0.1:8000/{{ shurl }}"></p>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}
