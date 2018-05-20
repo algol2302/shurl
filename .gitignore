@@ -1,9 +1,10 @@
 #####################################################
 #django
 migrations/
-
+__pycache__/
 # Environments
 .env
 .venv
 env/
 venv/
+db.sqlite3

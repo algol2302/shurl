@@ -7,10 +7,8 @@ from shurlapp.views import *
 
 app_name = 'shurlapp'
 urlpatterns = [
-	#diagram
 	url(r'^$', shurl_create_or_find.as_view(), name='shurl_create_or_find'),
 	path('<slug>/', redirect_to_shurl, name='blog_detail'),
-
 ]
 
 

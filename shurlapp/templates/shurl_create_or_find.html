@@ -13,7 +13,7 @@
 	<p>Поля отмеченные <sup class="required">*</sup> обязательные для заполнения</p>
 
 	<form class="needs-validation" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
-		{% csrf_token %} 
+		{% comment %} {% csrf_token %}  {% endcomment %}
 		{% for hidden in form.hidden_fields %} 
 			{{ hidden }} 
 		{% endfor %}
