@@ -33,7 +33,9 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
 	# user
 	'shurlapp',
+	'api',
 	# third party
+	'rest_framework',
 	'django_extensions',
 	# Django
 	'django.contrib.admin',
