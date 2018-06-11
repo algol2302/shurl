@@ -13,7 +13,7 @@
 	<p>Поля отмеченные <sup class="required">*</sup> обязательные для заполнения</p>
 
 	<form class="needs-validation" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
-		{% comment %} {% csrf_token %}  {% endcomment %}
+		{% csrf_token %} 
 		{% for hidden in form.hidden_fields %} 
 			{{ hidden }} 
 		{% endfor %}
@@ -49,6 +49,18 @@
 		<p><input value="127.0.0.1:8000/{{ shurl }}"></p>
 	</div>
 	{% endif %}
+
+	<div>
+		{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				<li id="message_{{ forloop.counter }}" {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+					{{ message }}
+				</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
 </div>
 
 {% endblock %}
