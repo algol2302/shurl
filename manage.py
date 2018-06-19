@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+"""This study project is a service for generation of short urls"""
+
 import os
 import sys
 

@@ -5,4 +5,4 @@ from .models import *
 
 class shurlappAdmin(admin.ModelAdmin):
 	list_display = ('id', 'shurl',)
-admin.site.register(Urls, shurlappAdmin)
+admin.site.register(Url, shurlappAdmin)
