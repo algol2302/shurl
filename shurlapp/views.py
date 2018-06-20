@@ -6,7 +6,8 @@ import random
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from shurl.settings import SITE_URL
-#
+from django.contrib import messages#
+
 from shurlapp.models import *
 
 # генерируем короткий url заданной длины
@@ -48,6 +49,7 @@ class shurl_create_or_find(CreateView):
 		self.data = generate_shurl(5)
 		instance.shurl = self.data
 		instance.save()
+		messages.info(self.request, "Шурл успешно сгенерирован!")
 		return render(self.request, self.template_name, self.get_context_data(form=form))
 
 	def get_context_data(self, *args, **kwargs):
