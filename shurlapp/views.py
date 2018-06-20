@@ -16,14 +16,13 @@ def generate_shurl(length):
 	while True:
 		shurl = "".join(random.choice(char) for x in range(length))
 		# проверяем нет ли такого адреса в бд
-		if not Urls.objects.filter(shurl=shurl):
-			
+		if not Url.objects.filter(shurl=shurl):
 			return shurl
 
 # Create your views here.
 class shurl_create_or_find(CreateView):	
 	template_name = "shurl_create_or_find.html"
-	model = Urls
+	model = Url
 	fields = ['url']
 
 	def dispatch(self, request, *args, **kwargs):
@@ -34,13 +33,13 @@ class shurl_create_or_find(CreateView):
 		instance = form.save(commit=False)
 		# делаем проверку нет ли данного url в БД
 		# если есть, сразу возвращаем его
-		res = Urls.objects.filter(url=instance.url).first()
+		res = Url.objects.filter(url=instance.url).first()
 		if res:
 			self.data = res.shurl
 			return render(self.request, self.template_name, self.get_context_data(form=form))
 		
 		# # делаем проверку на случай если пользователь вставил короткую ссылку
-		# res = Urls.objects.filter(=instance.url).first()
+		# res = Url.objects.filter(=instance.url).first()
 		# if res:
 		# 	self.data = res.shurl
 		# 	return render(self.request, self.template_name, self.get_context_data(form=form))
@@ -59,5 +58,5 @@ class shurl_create_or_find(CreateView):
 		return context_data
 
 def redirect_to_shurl(request, slug):
-	res = get_object_or_404(Urls, shurl=slug)
+	res = get_object_or_404(Url, shurl=slug)
 	return HttpResponseRedirect(res.url)

@@ -33,7 +33,9 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
 	# user
 	'shurlapp',
+	'api',
 	# third party
+	
 	'django_extensions',
 	# Django
 	'django.contrib.admin',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 SITE_URL = "127.0.0.1:8000"
+
+REST_FRAMEWORK = {
+	'DEFAULT_PERMISSION_CLASSES': (
+		'rest_framework.permissions.IsAdminUser',
+	),
+}
